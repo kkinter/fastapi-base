@@ -1,0 +1,11 @@
+default:
+  just --list
+
+run:
+  uvicorn app.main:app --reload
+
+test:
+  pytest -s -x --cov=app -vv
+
+post_test:
+  coverage html
