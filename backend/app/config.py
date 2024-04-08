@@ -8,7 +8,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    CONFIRM_TOKEN_EXPIRE_MINUTES: int = 15
+    CONFIRMATION_TOKEN_EXPIRE_MINUTES: int = 15
+    MAILGUN_DOMAIN: str
+    MAILGUN_API_KEY: str
 
 
 settings = Settings()

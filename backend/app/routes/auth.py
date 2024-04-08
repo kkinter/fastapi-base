@@ -30,6 +30,8 @@ def login_for_access_token(
         raise HTTPException(
             status_code=400, detail="이메일 또는 비밀번호가 틀렸습니다."
         )
+    if not user.is_active:
+        raise HTTPException(status_code=400, detail="계정이 활성화 되지 않았습니다.")
 
     access_token = create_access_token(data={"sub": user.email})
 

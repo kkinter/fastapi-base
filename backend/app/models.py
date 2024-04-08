@@ -23,6 +23,7 @@ class User(Base):
     username: Mapped[str]
     password: Mapped[str]
     email: Mapped[str]
+    is_active: Mapped[bool] = mapped_column(default=False)
 
     todos: Mapped[list["Todo"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
