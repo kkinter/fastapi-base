@@ -48,6 +48,7 @@ def user(session):
     session.refresh(user)
 
     user.clean_password = "test"
+    user.is_active = True
     return user
 
 

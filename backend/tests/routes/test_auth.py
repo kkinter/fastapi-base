@@ -10,7 +10,7 @@ def test_get_token(client, user):
         data={"username": user.email, "password": user.clean_password},
     )
     token = resp.json()
-
+    print(token)
     assert resp.status_code == 200
     assert "access_token" in token
     assert "token_type" in token
@@ -36,7 +36,7 @@ def test_token_expired_after_time(client, user):
             },
         )
         assert resp.status_code == 401
-        assert resp.json() == {"detail": "자격 증명을 확인할 수 없습니다."}
+        assert resp.json() == {"detail": "토큰이 만료되었습니다."}
 
 
 def test_token_wrong_password(client, user):
@@ -87,4 +87,4 @@ def test_token_expired_dont_refresh(client, user):
             headers={"Authorization": f"Bearer {token}"},
         )
         assert resp.status_code == 401
-        assert resp.json() == {"detail": "자격 증명을 확인할 수 없습니다."}
+        assert resp.json() == {"detail": "토큰이 만료되었습니다."}
